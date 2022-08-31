@@ -1,12 +1,12 @@
-package com.maroqi.newsapplication.Presentation.views.adapters
+package com.maroqi.newsapplication.presentation.views.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 
-import com.maroqi.newsapplication.Presentation.views.adapters.placeholder.PlaceholderContent.PlaceholderItem
-import com.maroqi.newsapplication.Presentation.views.screens.databinding.FragmentNewsItemBinding
+import com.maroqi.newsapplication.presentation.views.adapters.placeholder.PlaceholderContent.PlaceholderItem
+import com.maroqi.newsapplication.presentation.views.screens.databinding.FragmentNewsItemBinding
 
 /**
  * [RecyclerView.Adapter] that can display a [PlaceholderItem].

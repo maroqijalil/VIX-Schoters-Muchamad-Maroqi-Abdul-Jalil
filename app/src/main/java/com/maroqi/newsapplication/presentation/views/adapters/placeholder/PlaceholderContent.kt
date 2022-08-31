@@ -1,4 +1,4 @@
-package com.maroqi.newsapplication.Presentation.views.adapters.placeholder
+package com.maroqi.newsapplication.presentation.views.adapters.placeholder
 
 import java.util.ArrayList
 import java.util.HashMap
