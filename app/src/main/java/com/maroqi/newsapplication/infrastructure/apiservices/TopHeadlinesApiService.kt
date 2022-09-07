@@ -6,21 +6,17 @@ import com.maroqi.newsapplication.infrastructure.network.RetrofitNetwork
 import retrofit2.Call
 import retrofit2.http.*
 
-object EverythingApiService {
+object TopHeadlinesApiService {
     interface ApiService {
-        @GET("everything")
+        @GET("top-headlines")
         fun getUsers(@QueryMap queries: Map<String, String>): Call<NewsListResponse>
     }
 
     data class Query(
         val q: String? = null,
-        val searchIn: String? = null,
-        val from: String? = null,
-        val to: String? = null,
-        val sortBy: String? = null,
+        val category: String? = null,
         val pageSize: String? = null,
         val page: String? = null,
-        val language: String? = null,
     ) {
         fun create(): Map<String, String> = QueryUtil.toMapWithOnlyPrimaryConstructorProperties(this)
     }

@@ -3,10 +3,12 @@ package com.maroqi.newsapplication.presentation.views.adapters
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.maroqi.newsapplication.databinding.ItemNewsListBinding
-import com.maroqi.newsapplication.domain.responses.NewsResponse
+import com.maroqi.newsapplication.domain.models.NewsModel
+import java.text.SimpleDateFormat
 
-class NewsListAdapter(private val values: List<NewsResponse>) :
+class NewsListAdapter(private val values: List<NewsModel>) :
     RecyclerView.Adapter<NewsListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,9 +27,20 @@ class NewsListAdapter(private val values: List<NewsResponse>) :
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(binding: ItemNewsListBinding) :
+    inner class ViewHolder(private val binding: ItemNewsListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: NewsResponse) {
+
+        fun bind(item: NewsModel) {
+            binding.tvNewsTitle.text = item.title
+            binding.tvNewsDesc.text = item.description
+            binding.tvNewsAuthor.text = item.author
+            binding.tvNewsDate.text = SimpleDateFormat("dd/MM/yyyy").format(item.date)
+
+            if (!item.image.isNullOrEmpty()) {
+                Glide.with(binding.root)
+                    .load(item.image)
+                    .into(binding.ivNewsItem)
+            }
         }
     }
 }
