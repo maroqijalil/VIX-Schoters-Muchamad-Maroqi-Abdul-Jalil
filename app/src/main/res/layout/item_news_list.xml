@@ -33,6 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="Title"
             android:textColor="@color/text_primary"
             android:textSize="20sp"
@@ -42,7 +44,8 @@
             android:id="@+id/tv_news_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="Description..."
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="12sp" />
@@ -50,6 +53,7 @@
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             app:alignItems="flex_end"
             app:flexDirection="row"
             app:justifyContent="space_between">
@@ -88,7 +92,7 @@
                 android:id="@+id/ig_news_favorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background=""
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_favorite_border_24" />
         </com.google.android.flexbox.FlexboxLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
