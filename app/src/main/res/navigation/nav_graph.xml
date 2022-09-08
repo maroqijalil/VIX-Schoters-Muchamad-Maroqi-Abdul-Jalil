@@ -8,6 +8,7 @@
     <fragment
         android:id="@+id/news_list_fragment"
         android:name="com.maroqi.newsapplication.presentation.views.screens.NewsListFragment"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_news_list">
 
         <action
@@ -31,6 +32,7 @@
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.maroqi.newsapplication.presentation.views.screens.ProfileFragment"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment

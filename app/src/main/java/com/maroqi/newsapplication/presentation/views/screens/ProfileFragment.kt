@@ -5,24 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuHost
 import com.maroqi.newsapplication.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding? = null
-    private val binding: FragmentProfileBinding = _binding!!
+    private var binding: FragmentProfileBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentProfileBinding.inflate(inflater)
-        return binding.root
+    ): View? {
+        binding = FragmentProfileBinding.inflate(inflater)
+        return binding?.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        if (_binding != null) {
-            _binding = null
+        if (binding != null) {
+            binding = null
         }
     }
 }

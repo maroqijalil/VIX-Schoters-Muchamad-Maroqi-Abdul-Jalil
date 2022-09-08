@@ -6,7 +6,9 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maroqi.newsapplication.R
 import com.maroqi.newsapplication.databinding.FragmentNewsListBinding
@@ -38,13 +40,20 @@ class NewsListFragment : Fragment() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when(menuItem.itemId) {
-                    R.id.search -> {
+                    R.id.profile -> {
+                        val action = NewsListFragmentDirections.toProfile()
+                        findNavController().navigate(action)
+                        true
+                    }
+                    R.id.bookmark -> {
+                        val action = NewsListFragmentDirections.toBookmark()
+                        findNavController().navigate(action)
                         true
                     }
                     else -> true
                 }
             }
-        })
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     override fun onDestroyView() {
