@@ -1,12 +1,14 @@
 package com.maroqi.newsapplication.presentation.views.screens
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maroqi.newsapplication.R
 import com.maroqi.newsapplication.databinding.FragmentNewsListBinding
 import com.maroqi.newsapplication.presentation.viewmodels.MainViewModel
 import com.maroqi.newsapplication.presentation.views.adapters.NewsListAdapter
@@ -18,6 +20,11 @@ class NewsListFragment : Fragment() {
 
     private lateinit var newsAdapter: NewsListAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +34,10 @@ class NewsListFragment : Fragment() {
         initList()
 
         return binding?.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.top_app_bar, menu)
     }
 
     override fun onDestroyView() {

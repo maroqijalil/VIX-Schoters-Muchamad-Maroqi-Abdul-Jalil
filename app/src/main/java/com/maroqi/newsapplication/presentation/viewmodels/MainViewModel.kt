@@ -16,7 +16,8 @@ class MainViewModel : ViewModel() {
         GetEverything().execute(Request(
             query = EverythingApiService.Query(
                 language = "en",
-                q = "a"
+                q = "a",
+                pageSize = "10",
             ).create(),
             onSuccess = { _news.value = it },
             onFailure = {}
