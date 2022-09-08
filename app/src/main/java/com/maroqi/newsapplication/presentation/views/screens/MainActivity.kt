@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        setupActionBar()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -43,6 +44,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.getNews()
+        viewModel.getNews("a", 10)
+    }
+
+    private fun setupActionBar() {
+        setSupportActionBar(binding.toolbar)
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }

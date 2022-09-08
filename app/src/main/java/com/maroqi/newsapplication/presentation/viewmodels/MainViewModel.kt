@@ -12,12 +12,12 @@ class MainViewModel : ViewModel() {
     private val _news = MutableLiveData<List<NewsModel>>()
     val news: LiveData<List<NewsModel>> = _news
 
-    fun getNews() {
+    fun getNews(query: String, pageSize: Int) {
         GetEverything().execute(Request(
             query = EverythingApiService.Query(
                 language = "en",
-                q = "a",
-                pageSize = "10",
+                q = query,
+                pageSize = pageSize.toString(),
             ).create(),
             onSuccess = { _news.value = it },
             onFailure = {}

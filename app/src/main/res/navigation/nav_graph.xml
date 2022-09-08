@@ -8,13 +8,33 @@
     <fragment
         android:id="@+id/news_list_fragment"
         android:name="com.maroqi.newsapplication.presentation.views.screens.NewsListFragment"
-        tools:layout="@layout/fragment_news_list" />
+        tools:layout="@layout/fragment_news_list">
+
+        <action
+            android:id="@+id/to_detail"
+            app:destination="@id/news_detail_fragment" />
+
+        <action
+            android:id="@+id/to_profile"
+            app:destination="@id/profile_fragment" />
+
+        <action
+            android:id="@+id/to_bookmark"
+            app:destination="@id/bookmark_fragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/news_detail_fragment"
         android:name="com.maroqi.newsapplication.presentation.views.screens.NewsDetailFragment"
         tools:layout="@layout/fragment_news_detail" />
+
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.maroqi.newsapplication.presentation.views.screens.ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/bookmark_fragment"
+        android:name="com.maroqi.newsapplication.presentation.views.screens.BookmarkFragment"
+        tools:layout="@layout/fragment_bookmark" />
 </navigation>

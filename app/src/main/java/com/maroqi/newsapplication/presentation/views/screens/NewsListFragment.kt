@@ -2,11 +2,11 @@ package com.maroqi.newsapplication.presentation.views.screens
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maroqi.newsapplication.R
 import com.maroqi.newsapplication.databinding.FragmentNewsListBinding
@@ -17,13 +17,6 @@ class NewsListFragment : Fragment() {
     private var binding: FragmentNewsListBinding? = null
 
     private val viewModel: MainViewModel by activityViewModels()
-
-    private lateinit var newsAdapter: NewsListAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +29,22 @@ class NewsListFragment : Fragment() {
         return binding?.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_app_bar, menu)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.top_app_bar, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when(menuItem.itemId) {
+                    R.id.search -> {
+                        true
+                    }
+                    else -> true
+                }
+            }
+        })
     }
 
     override fun onDestroyView() {
@@ -49,12 +56,10 @@ class NewsListFragment : Fragment() {
 
     private fun initList() {
         if (binding != null) {
-            newsAdapter = NewsListAdapter(listOf())
-
             binding!!.rvNews.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context)
-                adapter = newsAdapter
+                adapter = NewsListAdapter(listOf())
             }
 
             viewModel.news.observe(viewLifecycleOwner) {
