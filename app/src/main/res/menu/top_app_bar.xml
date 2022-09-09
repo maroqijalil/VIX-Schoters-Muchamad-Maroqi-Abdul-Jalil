@@ -12,7 +12,7 @@
     <group android:menuCategory="container">
         <item
             android:id="@+id/bookmark"
-            android:icon="@drawable/ic_favorite_24"
+            android:icon="@drawable/ic_bookmark_24"
             android:title="@string/bookmark" />
 
         <item

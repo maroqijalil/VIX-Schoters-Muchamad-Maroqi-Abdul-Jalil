@@ -1,6 +1,7 @@
 package com.maroqi.newsapplication.presentation.views.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -66,17 +67,19 @@ class NewsListFragment : Fragment() {
 
     private fun initList() {
         if (binding != null) {
+            val newsListAdapter = NewsListAdapter(listOf()) { item ->
+                val action = NewsListFragmentDirections.toDetail(item)
+                findNavController().navigate(action)
+            }
+
             binding!!.rvNews.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context)
-                adapter = NewsListAdapter(listOf())
+                adapter = newsListAdapter
             }
 
             viewModel.news.observe(viewLifecycleOwner) {
-                binding!!.rvNews.adapter = NewsListAdapter(it) { item ->
-                    val action = NewsListFragmentDirections.toDetail(item)
-                    findNavController().navigate(action)
-                }
+                newsListAdapter.changeList(it)
             }
         }
     }

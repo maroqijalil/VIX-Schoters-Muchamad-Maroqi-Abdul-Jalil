@@ -1,6 +1,5 @@
 package com.maroqi.newsapplication.domain.repositories.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -16,5 +15,5 @@ interface NewsRepository {
     fun delete(news: NewsEntity)
 
     @Query("SELECT * FROM news")
-    fun getAll(): LiveData<List<NewsEntity>>
+    fun getAll(): List<NewsEntity>
 }

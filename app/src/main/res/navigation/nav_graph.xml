@@ -52,6 +52,7 @@
 
     <fragment
         android:id="@+id/bookmark_fragment"
+        android:label="Bookmark"
         android:name="com.maroqi.newsapplication.presentation.views.screens.BookmarkFragment"
         tools:layout="@layout/fragment_bookmark" />
 </navigation>

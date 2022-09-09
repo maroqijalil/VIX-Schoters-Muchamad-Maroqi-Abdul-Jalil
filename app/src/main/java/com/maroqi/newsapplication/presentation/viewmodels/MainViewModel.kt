@@ -27,4 +27,28 @@ class MainViewModel(private val useCases: UseCases) : ViewModel() {
             viewModelScope
         )
     }
+
+    private val _bookmarks = MutableLiveData<List<NewsModel>>()
+    val bookmarks: LiveData<List<NewsModel>> = _bookmarks
+
+    fun getBookmarks() {
+        useCases.getBookmarks(
+            Request(
+                onSuccess = { _bookmarks.value = it },
+                onFailure = {}
+            ),
+            viewModelScope
+        )
+    }
+
+    fun bookmark(news: NewsModel) {
+        useCases.insertBookmark(
+            Request(
+                data = news,
+                onSuccess = {},
+                onFailure = {}
+            ),
+            viewModelScope
+        )
+    }
 }

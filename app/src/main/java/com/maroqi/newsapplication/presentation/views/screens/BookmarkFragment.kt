@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.maroqi.newsapplication.application.factory.NewsViewModelFactory
 import com.maroqi.newsapplication.databinding.FragmentBookmarkBinding
 import com.maroqi.newsapplication.presentation.viewmodels.MainViewModel
 import com.maroqi.newsapplication.presentation.views.adapters.BookmarkListAdapter
@@ -14,7 +15,7 @@ import com.maroqi.newsapplication.presentation.views.adapters.BookmarkListAdapte
 class BookmarkFragment : Fragment() {
     private var binding: FragmentBookmarkBinding? = null
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: MainViewModel by activityViewModels { NewsViewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +26,11 @@ class BookmarkFragment : Fragment() {
         initList()
 
         return binding?.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getBookmarks()
     }
 
     override fun onDestroyView() {
@@ -42,7 +48,7 @@ class BookmarkFragment : Fragment() {
                 adapter = BookmarkListAdapter(listOf())
             }
 
-            viewModel.news.observe(viewLifecycleOwner) {
+            viewModel.bookmarks.observe(viewLifecycleOwner) {
                 binding!!.rvNews.adapter = BookmarkListAdapter(it)
             }
         }
