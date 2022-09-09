@@ -8,7 +8,7 @@ import retrofit2.http.*
 object TopHeadlinesApiService {
     interface ApiService {
         @GET("top-headlines")
-        fun getTopHeadlines(@QueryMap queries: Map<String, String>): Call<NewsListResponse>
+        suspend fun getTopHeadlines(@QueryMap queries: Map<String, String>): NewsListResponse
     }
 
     data class Query(

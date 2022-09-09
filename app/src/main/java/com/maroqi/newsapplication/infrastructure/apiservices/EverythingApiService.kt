@@ -8,7 +8,7 @@ import retrofit2.http.*
 object EverythingApiService {
     interface ApiService {
         @GET("everything")
-        fun getEverything(@QueryMap queries: Map<String, String>): Call<NewsListResponse>
+        suspend fun getEverything(@QueryMap queries: Map<String, String>): NewsListResponse
     }
 
     data class Query(

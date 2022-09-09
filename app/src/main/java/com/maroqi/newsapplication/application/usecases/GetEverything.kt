@@ -8,26 +8,16 @@ import com.maroqi.newsapplication.infrastructure.apiservices.EverythingApiServic
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
-class GetEverything {
-    fun execute(request: Request<List<NewsModel>>) {
-        EverythingApiService.get().getEverything(request.query)
-            .enqueue(object : Callback<NewsListResponse> {
-                override fun onResponse(
-                    call: Call<NewsListResponse>,
-                    response: Response<NewsListResponse>
-                ) {
-                    val body = response.body()
-                    if (response.isSuccessful && body != null) {
-                        request.onSuccess(body.articles?.mapNotNull { NewsAdapter.toModel(it) }
-                            ?: listOf())
-                    } else {
-                        request.onFailure("There is some problem, try again!")
-                    }
-                }
-
-                override fun onFailure(call: Call<NewsListResponse>, t: Throwable) =
-                    request.onFailure(t.message ?: "")
-            })
+class GetEverything : UseCase<List<NewsModel>>() {
+    override suspend fun execute(request: Request<List<NewsModel>>) {
+        try {
+            val response = EverythingApiService.get().getEverything(request.query)
+            request.onSuccess(response.articles?.mapNotNull { NewsAdapter.toModel(it) }
+                ?: listOf())
+        } catch (e: Exception) {
+            request.onFailure(e.localizedMessage ?: "")
+        }
     }
 }
