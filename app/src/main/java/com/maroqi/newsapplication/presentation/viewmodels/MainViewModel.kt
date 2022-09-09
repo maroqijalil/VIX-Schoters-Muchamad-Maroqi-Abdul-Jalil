@@ -4,19 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.maroqi.newsapplication.application.usecases.GetEverything
+import com.maroqi.newsapplication.application.usecases.UseCases
 import com.maroqi.newsapplication.domain.models.NewsModel
-import com.maroqi.newsapplication.domain.requests.Request
-import com.maroqi.newsapplication.infrastructure.apiservices.EverythingApiService
+import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.requests.Request
+import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.queries.EverythingQuery
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val useCases: UseCases) : ViewModel() {
     private val _news = MutableLiveData<List<NewsModel>>()
     val news: LiveData<List<NewsModel>> = _news
 
     fun getNews(query: String, pageSize: Int) {
-        GetEverything().run(
+        useCases.getEverything(
             Request(
-                query = EverythingApiService.Query(
+                query = EverythingQuery(
                     language = "en",
                     q = query,
                     pageSize = pageSize.toString(),

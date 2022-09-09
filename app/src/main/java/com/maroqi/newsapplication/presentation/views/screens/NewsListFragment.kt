@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maroqi.newsapplication.R
+import com.maroqi.newsapplication.application.factory.NewsViewModelFactory
 import com.maroqi.newsapplication.databinding.FragmentNewsListBinding
 import com.maroqi.newsapplication.presentation.viewmodels.MainViewModel
 import com.maroqi.newsapplication.presentation.views.adapters.NewsListAdapter
@@ -18,7 +19,7 @@ import com.maroqi.newsapplication.presentation.views.adapters.NewsListAdapter
 class NewsListFragment : Fragment() {
     private var binding: FragmentNewsListBinding? = null
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: MainViewModel by activityViewModels { NewsViewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

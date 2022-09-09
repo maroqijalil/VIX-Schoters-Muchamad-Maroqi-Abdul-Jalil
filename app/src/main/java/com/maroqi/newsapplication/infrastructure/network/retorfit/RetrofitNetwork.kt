@@ -1,4 +1,4 @@
-package com.maroqi.newsapplication.infrastructure.network
+package com.maroqi.newsapplication.infrastructure.network.retorfit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

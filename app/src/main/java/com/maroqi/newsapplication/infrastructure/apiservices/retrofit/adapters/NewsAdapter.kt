@@ -1,7 +1,7 @@
-package com.maroqi.newsapplication.infrastructure.adapters
+package com.maroqi.newsapplication.infrastructure.apiservices.retrofit.adapters
 
 import com.maroqi.newsapplication.domain.models.NewsModel
-import com.maroqi.newsapplication.domain.responses.NewsResponse
+import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.responses.NewsResponse
 import java.text.SimpleDateFormat
 import java.util.*
 

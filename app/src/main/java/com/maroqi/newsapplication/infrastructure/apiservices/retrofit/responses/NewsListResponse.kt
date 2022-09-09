@@ -1,4 +1,4 @@
-package com.maroqi.newsapplication.domain.responses
+package com.maroqi.newsapplication.infrastructure.apiservices.retrofit.responses
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

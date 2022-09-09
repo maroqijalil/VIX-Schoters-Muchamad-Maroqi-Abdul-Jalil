@@ -1,4 +1,4 @@
-package com.maroqi.newsapplication.domain.requests
+package com.maroqi.newsapplication.infrastructure.apiservices.retrofit.requests
 
 data class Request <in T>(
     val query: Map<String, String> = mapOf(),

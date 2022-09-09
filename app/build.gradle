@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
 }
@@ -60,4 +61,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
 
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+    implementation 'androidx.room:room-runtime:2.4.3'
+    kapt 'androidx.room:room-compiler:2.4.3'
 }
