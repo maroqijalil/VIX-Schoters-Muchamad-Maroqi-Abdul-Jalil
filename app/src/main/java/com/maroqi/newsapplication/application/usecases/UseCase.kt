@@ -7,7 +7,11 @@ abstract class UseCase<T> {
     abstract suspend fun execute(request: Request<T>)
 
     @OptIn(DelicateCoroutinesApi::class)
-    operator fun invoke(request: Request<T>, scope: CoroutineScope = GlobalScope) {
-        scope.launch(Dispatchers.Main) { execute(request) }
+    operator fun invoke(
+        request: Request<T>,
+        scope: CoroutineScope = GlobalScope,
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
+        scope.launch(dispatcher) { execute(request) }
     }
 }

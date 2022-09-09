@@ -1,5 +1,6 @@
 package com.maroqi.newsapplication.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.maroqi.newsapplication.application.usecases.UseCases
 import com.maroqi.newsapplication.domain.models.NewsModel
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.requests.Request
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.queries.EverythingQuery
+import kotlinx.coroutines.Dispatchers
 
 class MainViewModel(private val useCases: UseCases) : ViewModel() {
     private val _news = MutableLiveData<List<NewsModel>>()
@@ -21,7 +23,7 @@ class MainViewModel(private val useCases: UseCases) : ViewModel() {
                     q = query,
                     pageSize = pageSize.toString(),
                 ).create(),
-                onSuccess = { _news.value = it },
+                onSuccess = { _news.postValue(it) },
                 onFailure = {}
             ),
             viewModelScope
@@ -34,7 +36,7 @@ class MainViewModel(private val useCases: UseCases) : ViewModel() {
     fun getBookmarks() {
         useCases.getBookmarks(
             Request(
-                onSuccess = { _bookmarks.value = it },
+                onSuccess = { _bookmarks.postValue(it) },
                 onFailure = {}
             ),
             viewModelScope
@@ -42,13 +44,24 @@ class MainViewModel(private val useCases: UseCases) : ViewModel() {
     }
 
     fun bookmark(news: NewsModel) {
-        useCases.insertBookmark(
-            Request(
-                data = news,
-                onSuccess = {},
-                onFailure = {}
-            ),
-            viewModelScope
-        )
+        if (news.isBookmarked) {
+            useCases.insertBookmark(
+                Request(
+                    data = news,
+                    onSuccess = {},
+                    onFailure = {}
+                ),
+                viewModelScope
+            )
+        } else {
+            useCases.deleteBookmark(
+                Request(
+                    data = news,
+                    onSuccess = {},
+                    onFailure = {}
+                ),
+                viewModelScope
+            )
+        }
     }
 }

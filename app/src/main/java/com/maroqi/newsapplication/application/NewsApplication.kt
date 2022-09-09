@@ -3,10 +3,7 @@ package com.maroqi.newsapplication.application
 import android.app.Application
 import androidx.room.Room
 import com.maroqi.newsapplication.application.factory.NewsViewModelFactory
-import com.maroqi.newsapplication.application.usecases.GetBookmarks
-import com.maroqi.newsapplication.application.usecases.GetEverything
-import com.maroqi.newsapplication.application.usecases.InsertBookmark
-import com.maroqi.newsapplication.application.usecases.UseCases
+import com.maroqi.newsapplication.application.usecases.*
 import com.maroqi.newsapplication.domain.apiservices.retrofit.EverythingApiService
 import com.maroqi.newsapplication.domain.apiservices.retrofit.TopHeadlinesApiService
 import com.maroqi.newsapplication.infrastructure.db.room.RoomDb
@@ -25,9 +22,10 @@ class NewsApplication : Application() {
 
         NewsViewModelFactory.inject(
             UseCases(
-                GetEverything(everythingApiService),
+                GetEverything(everythingApiService, db.newsRepository()),
                 GetBookmarks(db.newsRepository()),
-                InsertBookmark(db.newsRepository())
+                InsertBookmark(db.newsRepository()),
+                DeleteBookmark(db.newsRepository())
             )
         )
     }

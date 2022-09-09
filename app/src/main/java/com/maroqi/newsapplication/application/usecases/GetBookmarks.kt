@@ -9,7 +9,7 @@ import java.lang.Exception
 class GetBookmarks(private val repository: NewsRepository) : UseCase<List<NewsModel>>() {
     override suspend fun execute(request: Request<List<NewsModel>>) {
         try {
-            request.onSuccess(repository.getAll().mapNotNull { NewsAdapter.toModel(it) })
+            request.onSuccess(repository.getAll().map { NewsAdapter.toModel(it) })
         } catch (e: Exception) {
             request.onFailure(e.localizedMessage ?: "")
         }

@@ -1,14 +1,11 @@
 package com.maroqi.newsapplication.domain.repositories.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.maroqi.newsapplication.domain.entities.NewsEntity
 
 @Dao
 interface NewsRepository {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(news: NewsEntity)
 
     @Delete

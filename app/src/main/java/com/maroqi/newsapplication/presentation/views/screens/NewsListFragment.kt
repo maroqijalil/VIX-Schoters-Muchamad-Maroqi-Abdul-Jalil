@@ -58,6 +58,11 @@ class NewsListFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getNews("a", 10)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         if (binding != null) {
@@ -67,10 +72,14 @@ class NewsListFragment : Fragment() {
 
     private fun initList() {
         if (binding != null) {
-            val newsListAdapter = NewsListAdapter(listOf()) { item ->
-                val action = NewsListFragmentDirections.toDetail(item)
-                findNavController().navigate(action)
-            }
+            val newsListAdapter = NewsListAdapter(
+                listOf(),
+                { item ->
+                    val action = NewsListFragmentDirections.toDetail(item)
+                    findNavController().navigate(action)
+                },
+                { viewModel.bookmark(it) }
+            )
 
             binding!!.rvNews.apply {
                 setHasFixedSize(true)
