@@ -8,24 +8,13 @@ import com.maroqi.newsapplication.databinding.ItemNewsListBinding
 import com.maroqi.newsapplication.domain.models.NewsModel
 import java.text.SimpleDateFormat
 
-class NewsListAdapter(private val values: List<NewsModel>) :
+class NewsListAdapter(
+    values: List<NewsModel>,
+    private val onClick: (item: NewsModel) -> Unit = {}
+) :
     RecyclerView.Adapter<NewsListAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            ItemNewsListBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(values[position])
-    }
-
-    override fun getItemCount(): Int = values.size
+    private val list: MutableList<NewsModel> = values.toMutableList()
 
     inner class ViewHolder(private val binding: ItemNewsListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -41,6 +30,32 @@ class NewsListAdapter(private val values: List<NewsModel>) :
                     .load(item.image)
                     .into(binding.ivNewsItem)
             }
+
+            binding.llNewsItem.apply {
+                isClickable = true
+                setOnClickListener { onClick(item) }
+            }
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            ItemNewsListBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(list[position])
+    }
+
+    override fun getItemCount(): Int = list.size
+
+    fun changeList(list: List<NewsModel>) {
+        this.list.clear()
+        this.list.addAll(list)
     }
 }

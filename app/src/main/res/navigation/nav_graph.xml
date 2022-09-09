@@ -27,7 +27,12 @@
     <fragment
         android:id="@+id/news_detail_fragment"
         android:name="com.maroqi.newsapplication.presentation.views.screens.NewsDetailFragment"
-        tools:layout="@layout/fragment_news_detail" />
+        tools:layout="@layout/fragment_news_detail">
+
+        <argument
+            android:name="news"
+            app:argType=".domain.models.NewsModel" />
+    </fragment>
 
     <fragment
         android:id="@+id/profile_fragment"

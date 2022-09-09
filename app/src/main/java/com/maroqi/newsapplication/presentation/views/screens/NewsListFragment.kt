@@ -39,7 +39,7 @@ class NewsListFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when(menuItem.itemId) {
+                return when (menuItem.itemId) {
                     R.id.profile -> {
                         val action = NewsListFragmentDirections.toProfile()
                         findNavController().navigate(action)
@@ -72,7 +72,10 @@ class NewsListFragment : Fragment() {
             }
 
             viewModel.news.observe(viewLifecycleOwner) {
-                binding!!.rvNews.adapter = NewsListAdapter(it)
+                binding!!.rvNews.adapter = NewsListAdapter(it) { item ->
+                    val action = NewsListFragmentDirections.toDetail(item)
+                    findNavController().navigate(action)
+                }
             }
         }
     }

@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/text_secondary</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/text_primary</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
