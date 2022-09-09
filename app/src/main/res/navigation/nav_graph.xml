@@ -13,15 +13,25 @@
 
         <action
             android:id="@+id/to_detail"
-            app:destination="@id/news_detail_fragment" />
+            app:destination="@id/news_detail_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
 
         <action
             android:id="@+id/to_profile"
-            app:destination="@id/profile_fragment" />
+            app:destination="@id/profile_fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
 
         <action
             android:id="@+id/to_bookmark"
-            app:destination="@id/bookmark_fragment" />
+            app:destination="@id/bookmark_fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment

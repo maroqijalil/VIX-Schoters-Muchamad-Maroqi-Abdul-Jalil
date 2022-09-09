@@ -2,6 +2,7 @@ package com.maroqi.newsapplication.domain.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.text.SimpleDateFormat
 import java.util.*
 
 @Parcelize
@@ -13,4 +14,8 @@ data class NewsModel(
     val title: String? = null,
     val content: String? = null,
     val isFavorite: Boolean = false
-) : Parcelable
+) : Parcelable {
+    fun getDate(): String {
+        return SimpleDateFormat("dd/MM/yyyy").format(date)
+    }
+}

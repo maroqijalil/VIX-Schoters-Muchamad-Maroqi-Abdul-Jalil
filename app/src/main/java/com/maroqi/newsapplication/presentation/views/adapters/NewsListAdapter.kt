@@ -23,7 +23,7 @@ class NewsListAdapter(
             binding.tvNewsTitle.text = item.title
             binding.tvNewsDesc.text = item.description
             binding.tvNewsAuthor.text = item.author
-            binding.tvNewsDate.text = SimpleDateFormat("dd/MM/yyyy").format(item.date)
+            binding.tvNewsDate.text = item.getDate()
 
             if (!item.image.isNullOrEmpty()) {
                 Glide.with(binding.root)
@@ -53,9 +53,4 @@ class NewsListAdapter(
     }
 
     override fun getItemCount(): Int = list.size
-
-    fun changeList(list: List<NewsModel>) {
-        this.list.clear()
-        this.list.addAll(list)
-    }
 }

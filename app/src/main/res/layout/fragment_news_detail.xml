@@ -16,7 +16,7 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fitsSystemWindows="true">
 
             <ImageView
@@ -31,9 +31,66 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                app:layout_collapseMode="pin"
+                android:background="@drawable/top_to_bottom"
+                app:navigationIconTint="@color/primary"
                 app:title="" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:id="@+id/tv_news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:ellipsize="end"
+            android:text="Title"
+            android:textColor="@color/text_primary"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:alignItems="center"
+            app:flexDirection="row">
+
+            <TextView
+                android:id="@+id/tv_news_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="author"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginHorizontal="8dp"
+                android:src="@drawable/ic_trip_origin_24"
+                app:tint="@color/primary_dark" />
+
+            <TextView
+                android:id="@+id/tv_news_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="date"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="12sp" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <TextView
+            android:layout_marginTop="18dp"
+            android:id="@+id/tv_news_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Content"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -11,6 +11,23 @@ import java.text.SimpleDateFormat
 class BookmarkListAdapter(private val values: List<NewsModel>) :
     RecyclerView.Adapter<BookmarkListAdapter.ViewHolder>() {
 
+    inner class ViewHolder(private val binding: ItemBookmarkListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: NewsModel) {
+            binding.tvNewsTitle.text = item.title
+            binding.tvNewsDesc.text = item.description
+            binding.tvNewsAuthor.text = item.author
+            binding.tvNewsDate.text = item.getDate()
+
+            if (!item.image.isNullOrEmpty()) {
+                Glide.with(binding.root)
+                    .load(item.image)
+                    .into(binding.ivNewsItem)
+            }
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemBookmarkListBinding.inflate(
@@ -26,21 +43,4 @@ class BookmarkListAdapter(private val values: List<NewsModel>) :
     }
 
     override fun getItemCount(): Int = values.size
-
-    inner class ViewHolder(private val binding: ItemBookmarkListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: NewsModel) {
-            binding.tvNewsTitle.text = item.title
-            binding.tvNewsDesc.text = item.description
-            binding.tvNewsAuthor.text = item.author
-            binding.tvNewsDate.text = SimpleDateFormat("dd/MM/yyyy").format(item.date)
-
-            if (!item.image.isNullOrEmpty()) {
-                Glide.with(binding.root)
-                    .load(item.image)
-                    .into(binding.ivNewsItem)
-            }
-        }
-    }
 }
