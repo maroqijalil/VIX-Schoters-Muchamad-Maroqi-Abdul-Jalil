@@ -54,5 +54,12 @@
         android:id="@+id/bookmark_fragment"
         android:label="Bookmark"
         android:name="com.maroqi.newsapplication.presentation.views.screens.BookmarkFragment"
-        tools:layout="@layout/fragment_bookmark" />
+        tools:layout="@layout/fragment_bookmark" >
+
+        <action
+            android:id="@+id/to_detail"
+            app:destination="@id/news_detail_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
+    </fragment>
 </navigation>

@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_trip_origin_24.xml" value="0.2135" />
         <entry key="app/src/main/res/drawable/top_to_bottom.xml" value="0.2135" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_bookmark.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_bookmark.xml" value="0.296875" />
         <entry key="app/src/main/res/layout/fragment_news_detail.xml" value="0.313953488372093" />
         <entry key="app/src/main/res/layout/fragment_news_item.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/fragment_news_list.xml" value="0.33" />

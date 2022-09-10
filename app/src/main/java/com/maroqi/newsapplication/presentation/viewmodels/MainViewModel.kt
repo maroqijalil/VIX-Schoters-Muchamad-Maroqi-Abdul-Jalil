@@ -1,6 +1,5 @@
 package com.maroqi.newsapplication.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,6 @@ import com.maroqi.newsapplication.application.usecases.UseCases
 import com.maroqi.newsapplication.domain.models.NewsModel
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.requests.Request
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.queries.EverythingQuery
-import kotlinx.coroutines.Dispatchers
 
 class MainViewModel(private val useCases: UseCases) : ViewModel() {
     private val _news = MutableLiveData<List<NewsModel>>()

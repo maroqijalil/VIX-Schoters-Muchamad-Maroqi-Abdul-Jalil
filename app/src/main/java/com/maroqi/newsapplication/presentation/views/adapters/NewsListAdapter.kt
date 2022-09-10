@@ -1,6 +1,5 @@
 package com.maroqi.newsapplication.presentation.views.adapters
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.maroqi.newsapplication.R
 import com.maroqi.newsapplication.databinding.ItemNewsListBinding
 import com.maroqi.newsapplication.domain.models.NewsModel
-import java.text.SimpleDateFormat
 
 class NewsListAdapter(
     values: List<NewsModel>,
@@ -41,20 +39,6 @@ class NewsListAdapter(
                 setOnClickListener { onClick(item) }
             }
         }
-    }
-
-    inner class DiffCallback(private val old: List<NewsModel>, private val new: List<NewsModel>) :
-        DiffUtil.Callback() {
-        override fun getOldListSize(): Int = old.size
-
-        override fun getNewListSize(): Int = new.size
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            old[oldItemPosition].title.equals(new[newItemPosition].title)
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            old[oldItemPosition].isBookmarked == new[newItemPosition].isBookmarked
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -116,7 +100,7 @@ class NewsListAdapter(
     override fun getItemCount(): Int = list.size
 
     fun changeList(list: List<NewsModel>) {
-        val diffCallback = DiffCallback(this.list, list)
+        val diffCallback = NewsListDiffCallback(this.list, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         this.list.clear()
         this.list.addAll(list)

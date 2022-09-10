@@ -22,7 +22,6 @@ class GetEverything(
                         request.onSuccess(response.articles?.mapNotNull {
                             val item = NewsAdapter.toModel(it)
                             bookmarks?.forEach { bookmark ->
-                                Log.d("jalil", bookmark.toString())
                                 if (bookmark.title.equals(item.title)) {
                                     item.isBookmarked = true
                                 }

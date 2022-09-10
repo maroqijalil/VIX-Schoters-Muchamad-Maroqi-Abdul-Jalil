@@ -8,8 +8,8 @@ interface NewsRepository {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(news: NewsEntity)
 
-    @Delete
-    fun delete(news: NewsEntity)
+    @Query("DELETE FROM news WHERE title=:title")
+    fun delete(title: String)
 
     @Query("SELECT * FROM news")
     fun getAll(): List<NewsEntity>
