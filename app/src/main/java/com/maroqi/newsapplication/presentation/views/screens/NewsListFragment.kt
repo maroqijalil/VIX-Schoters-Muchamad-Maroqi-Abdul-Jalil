@@ -1,14 +1,12 @@
 package com.maroqi.newsapplication.presentation.views.screens
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maroqi.newsapplication.R
@@ -58,9 +56,10 @@ class NewsListFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getNews("a", 10)
+    override fun onStart() {
+        super.onStart()
+//        viewModel.getNews()
+        viewModel.getTopNews()
     }
 
     override fun onDestroyView() {

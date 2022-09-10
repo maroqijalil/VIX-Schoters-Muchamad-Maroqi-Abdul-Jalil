@@ -2,6 +2,7 @@ package com.maroqi.newsapplication.infrastructure.apiservices.retrofit.queries
 
 data class TopHeadlinesQuery(
     val q: String? = null,
+    val country: String? = null,
     val category: String? = null,
     val pageSize: String? = null,
     val page: String? = null,
@@ -14,6 +15,9 @@ data class TopHeadlinesQuery(
         }
         if (!this.category.isNullOrEmpty()) {
             map["category"] = this.category
+        }
+        if (!this.country.isNullOrEmpty()) {
+            map["country"] = this.country
         }
         if (!this.pageSize.isNullOrEmpty()) {
             map["pageSize"] = this.pageSize

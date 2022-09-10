@@ -25,7 +25,8 @@ class NewsApplication : Application() {
                 GetEverything(everythingApiService, db.newsRepository()),
                 GetBookmarks(db.newsRepository()),
                 InsertBookmark(db.newsRepository()),
-                DeleteBookmark(db.newsRepository())
+                DeleteBookmark(db.newsRepository()),
+                GetTopHeadlines(topHeadlinesApiService, db.newsRepository())
             )
         )
     }

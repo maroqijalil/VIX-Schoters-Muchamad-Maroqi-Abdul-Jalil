@@ -56,7 +56,7 @@ class BookmarkListAdapter(
         holder.binding.igNewsFavorite.apply {
             isClickable = true
             setOnClickListener {
-                onClickBookmark(list[position])
+//                onClickBookmark(list[position])
                 removeAt(position)
             }
         }

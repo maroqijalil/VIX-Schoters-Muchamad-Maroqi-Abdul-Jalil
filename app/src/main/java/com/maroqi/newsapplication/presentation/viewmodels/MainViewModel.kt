@@ -8,17 +8,32 @@ import com.maroqi.newsapplication.application.usecases.UseCases
 import com.maroqi.newsapplication.domain.models.NewsModel
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.requests.Request
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.queries.EverythingQuery
+import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.queries.TopHeadlinesQuery
 
 class MainViewModel(private val useCases: UseCases) : ViewModel() {
     private val _news = MutableLiveData<List<NewsModel>>()
     val news: LiveData<List<NewsModel>> = _news
 
-    fun getNews(query: String, pageSize: Int) {
+    fun getNews(query: String = "a", pageSize: Int = 10) {
         useCases.getEverything(
             Request(
                 query = EverythingQuery(
                     language = "en",
                     q = query,
+                    pageSize = pageSize.toString(),
+                ).create(),
+                onSuccess = { _news.postValue(it) },
+                onFailure = {}
+            ),
+            viewModelScope
+        )
+    }
+
+    fun getTopNews(country: String = "us", pageSize: Int = 10) {
+        useCases.getTopHeadlines(
+            Request(
+                query = TopHeadlinesQuery(
+                    country = country,
                     pageSize = pageSize.toString(),
                 ).create(),
                 onSuccess = { _news.postValue(it) },
