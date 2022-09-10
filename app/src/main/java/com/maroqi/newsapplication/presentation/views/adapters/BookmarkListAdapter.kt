@@ -34,7 +34,6 @@ class BookmarkListAdapter(
             }
 
             binding.llNewsItem.apply {
-                isClickable = true
                 setOnClickListener { onClick(item) }
             }
         }
@@ -54,7 +53,6 @@ class BookmarkListAdapter(
         holder.bind(list[position])
 
         holder.binding.igNewsFavorite.apply {
-            isClickable = true
             setOnClickListener {
                 list[position].isBookmarked = false
                 onClickBookmark(list[position])

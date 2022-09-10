@@ -35,7 +35,6 @@ class NewsListAdapter(
             }
 
             binding.llNewsItem.apply {
-                isClickable = true
                 setOnClickListener { onClick(item) }
             }
         }
@@ -71,7 +70,6 @@ class NewsListAdapter(
                 )
             }
 
-            isClickable = true
             setOnClickListener {
                 val item = list[position]
 
