@@ -1,7 +1,9 @@
 package com.maroqi.newsapplication.presentation.views.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -50,16 +52,29 @@ class NewsListFragment : Fragment() {
                         findNavController().navigate(action)
                         true
                     }
+                    R.id.search -> {
+                        (menuItem.actionView as SearchView).setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                            override fun onQueryTextSubmit(text: String?): Boolean {
+                                if (!text.isNullOrEmpty()) {
+                                    viewModel.getNews(text)
+                                }
+
+                                return false
+                            }
+
+                            override fun onQueryTextChange(text: String?): Boolean = true
+                        })
+                        true
+                    }
                     else -> true
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
-    override fun onStart() {
-        super.onStart()
-//        viewModel.getNews()
-        viewModel.getTopNews()
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshNews()
     }
 
     override fun onDestroyView() {

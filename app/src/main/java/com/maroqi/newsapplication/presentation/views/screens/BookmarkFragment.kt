@@ -59,6 +59,7 @@ class BookmarkFragment : Fragment() {
                 adapter = bookmarkListAdapter
             }
 
+            viewModel.resetBookmarks()
             viewModel.bookmarks.observe(viewLifecycleOwner) {
                 bookmarkListAdapter.changeList(it)
             }

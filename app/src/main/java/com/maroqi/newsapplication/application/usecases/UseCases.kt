@@ -5,5 +5,6 @@ data class UseCases(
     val getBookmarks: GetBookmarks,
     val insertBookmark: InsertBookmark,
     val deleteBookmark: DeleteBookmark,
-    val getTopHeadlines: GetTopHeadlines
+    val getTopHeadlines: GetTopHeadlines,
+    val filterNews: FilterNews
 )

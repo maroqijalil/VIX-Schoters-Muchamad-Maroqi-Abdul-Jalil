@@ -56,6 +56,10 @@ class MainViewModel(private val useCases: UseCases) : ViewModel() {
         )
     }
 
+    fun resetBookmarks() {
+        _bookmarks.value = listOf()
+    }
+
     fun bookmark(news: NewsModel) {
         if (news.isBookmarked) {
             useCases.insertBookmark(
@@ -76,5 +80,15 @@ class MainViewModel(private val useCases: UseCases) : ViewModel() {
                 viewModelScope
             )
         }
+    }
+
+    fun refreshNews() {
+        useCases.filterNews(
+            Request(
+                data = news.value,
+                onSuccess = { _news.postValue(it) },
+                onFailure = {}
+            )
+        )
     }
 }
