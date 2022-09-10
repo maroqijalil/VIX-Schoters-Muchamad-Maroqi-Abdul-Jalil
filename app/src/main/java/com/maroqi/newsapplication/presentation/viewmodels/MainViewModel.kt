@@ -14,13 +14,12 @@ class MainViewModel(private val useCases: UseCases) : ViewModel() {
     private val _news = MutableLiveData<List<NewsModel>>()
     val news: LiveData<List<NewsModel>> = _news
 
-    fun getNews(query: String = "a", pageSize: Int = 10) {
+    fun getNews(query: String = "a") {
         useCases.getEverything(
             Request(
                 query = EverythingQuery(
                     language = "en",
                     q = query,
-                    pageSize = pageSize.toString(),
                 ).create(),
                 onSuccess = { _news.postValue(it) },
                 onFailure = {}
@@ -29,12 +28,11 @@ class MainViewModel(private val useCases: UseCases) : ViewModel() {
         )
     }
 
-    fun getTopNews(country: String = "us", pageSize: Int = 10) {
+    fun getHeadlinesNews(country: String = "us") {
         useCases.getTopHeadlines(
             Request(
                 query = TopHeadlinesQuery(
                     country = country,
-                    pageSize = pageSize.toString(),
                 ).create(),
                 onSuccess = { _news.postValue(it) },
                 onFailure = {}

@@ -2,8 +2,6 @@ package com.maroqi.newsapplication.presentation.views.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -58,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.getTopNews()
+        viewModel.getHeadlinesNews()
     }
 
     private fun setupActionBar() {
