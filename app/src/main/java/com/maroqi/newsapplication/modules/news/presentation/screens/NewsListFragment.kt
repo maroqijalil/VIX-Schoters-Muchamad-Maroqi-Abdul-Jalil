@@ -12,13 +12,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maroqi.newsapplication.R
 import com.maroqi.newsapplication.databinding.FragmentNewsListBinding
-import com.maroqi.newsapplication.modules.news.presentation.viewmodels.MainViewModel
+import com.maroqi.newsapplication.modules.news.presentation.viewmodels.NewsViewModel
 import com.maroqi.newsapplication.modules.news.presentation.views.adapters.NewsListAdapter
 
 class NewsListFragment : Fragment() {
     private var binding: FragmentNewsListBinding? = null
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: NewsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -4,16 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.maroqi.newsapplication.core.application.usecases.UseCases
 import com.maroqi.newsapplication.modules.news.domain.models.NewsModel
 import com.maroqi.newsapplication.core.network.Request
+import com.maroqi.newsapplication.modules.bookmark.application.usecases.BookmarkUseCases
+import com.maroqi.newsapplication.modules.news.application.usecases.NewsUseCases
 import com.maroqi.newsapplication.modules.news.infrastructure.queries.EverythingQuery
 import com.maroqi.newsapplication.modules.news.infrastructure.queries.TopHeadlinesQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val useCases: UseCases) : ViewModel() {
+class NewsViewModel @Inject constructor(
+    private val useCases: NewsUseCases,
+    private val bookmarkUseCases: BookmarkUseCases
+) : ViewModel() {
     private val _news = MutableLiveData<List<NewsModel>>()
     val news: LiveData<List<NewsModel>> = _news
 
@@ -44,45 +48,6 @@ class MainViewModel @Inject constructor(private val useCases: UseCases) : ViewMo
         )
     }
 
-    private val _bookmarks = MutableLiveData<List<NewsModel>>()
-    val bookmarks: LiveData<List<NewsModel>> = _bookmarks
-
-    fun getBookmarks() {
-        useCases.getBookmarks(
-            Request(
-                onSuccess = { _bookmarks.postValue(it) },
-                onFailure = {}
-            ),
-            viewModelScope
-        )
-    }
-
-    fun resetBookmarks() {
-        _bookmarks.value = listOf()
-    }
-
-    fun bookmark(news: NewsModel) {
-        if (news.isBookmarked) {
-            useCases.insertBookmark(
-                Request(
-                    data = news,
-                    onSuccess = {},
-                    onFailure = {}
-                ),
-                viewModelScope
-            )
-        } else {
-            useCases.deleteBookmark(
-                Request(
-                    data = news,
-                    onSuccess = {},
-                    onFailure = {}
-                ),
-                viewModelScope
-            )
-        }
-    }
-
     fun refreshNews() {
         useCases.filterNews(
             Request(
@@ -90,6 +55,17 @@ class MainViewModel @Inject constructor(private val useCases: UseCases) : ViewMo
                 onSuccess = { _news.postValue(it) },
                 onFailure = {}
             )
+        )
+    }
+
+    fun bookmark(news: NewsModel) {
+        bookmarkUseCases.updateBookmark(
+            Request(
+                data = news,
+                onSuccess = {},
+                onFailure = {}
+            ),
+            viewModelScope
         )
     }
 }

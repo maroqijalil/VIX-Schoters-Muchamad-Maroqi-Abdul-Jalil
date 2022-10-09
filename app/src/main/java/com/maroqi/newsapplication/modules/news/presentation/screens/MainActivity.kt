@@ -10,14 +10,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.maroqi.newsapplication.R
 import com.maroqi.newsapplication.databinding.ActivityMainBinding
-import com.maroqi.newsapplication.modules.news.presentation.viewmodels.MainViewModel
+import com.maroqi.newsapplication.modules.news.presentation.viewmodels.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: NewsViewModel by viewModels()
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration

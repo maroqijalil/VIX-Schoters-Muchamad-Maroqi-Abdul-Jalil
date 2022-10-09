@@ -7,10 +7,10 @@ import com.maroqi.newsapplication.modules.news.infrastructure.adapters.NewsAdapt
 import com.maroqi.newsapplication.modules.news.domain.dao.room.NewsDao
 import java.lang.Exception
 
-class InsertBookmark(private val repository: NewsDao) : UseCase<NewsModel>() {
+class InsertBookmark(private val dao: NewsDao) : UseCase<NewsModel>() {
     override suspend fun execute(request: Request<NewsModel>) {
         try {
-            repository.insert(NewsAdapter.fromModel(request.data!!))
+            dao.insert(NewsAdapter.fromModel(request.data!!))
             request.onSuccess(null)
         } catch (e: Exception) {
             request.onFailure(e.localizedMessage ?: "")

@@ -6,11 +6,17 @@ import com.maroqi.newsapplication.core.network.Request
 import com.maroqi.newsapplication.modules.news.domain.dao.room.NewsDao
 import java.lang.Exception
 
-class DeleteBookmark(private val dao: NewsDao) : UseCase<NewsModel>() {
+class UpdateBookmark(private val dao: NewsDao) : UseCase<NewsModel>() {
     override suspend fun execute(request: Request<NewsModel>) {
         try {
-            dao.delete(request.data!!.title!!)
-            request.onSuccess(null)
+            val news = request.data
+            if (news != null) {
+                if (news.isBookmarked) {
+                    InsertBookmark(dao)(request)
+                } else {
+                    DeleteBookmark(dao)(request)
+                }
+            }
         } catch (e: Exception) {
             request.onFailure(e.localizedMessage ?: "")
         }
