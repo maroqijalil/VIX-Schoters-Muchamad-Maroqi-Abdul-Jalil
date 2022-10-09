@@ -1,6 +1,5 @@
 package com.maroqi.newsapplication.application.usecases
 
-import android.util.Log
 import com.maroqi.newsapplication.domain.models.NewsModel
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.requests.Request
 import com.maroqi.newsapplication.domain.repositories.room.NewsRepository

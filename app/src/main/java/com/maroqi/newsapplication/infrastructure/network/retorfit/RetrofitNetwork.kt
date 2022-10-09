@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitNetwork {
-    val BASE_URL: String = "https://newsapi.org/v2/"
+    private val BASE_URL: String = "https://newsapi.org/v2/"
 
     val client: Retrofit
         get() {

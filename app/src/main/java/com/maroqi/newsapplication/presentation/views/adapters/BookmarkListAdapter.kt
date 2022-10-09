@@ -1,6 +1,5 @@
 package com.maroqi.newsapplication.presentation.views.adapters
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup

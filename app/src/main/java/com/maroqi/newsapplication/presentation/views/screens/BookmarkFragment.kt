@@ -1,7 +1,6 @@
 package com.maroqi.newsapplication.presentation.views.screens
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.maroqi.newsapplication.application.factory.NewsViewModelFactory
 import com.maroqi.newsapplication.databinding.FragmentBookmarkBinding
 import com.maroqi.newsapplication.presentation.viewmodels.MainViewModel
 import com.maroqi.newsapplication.presentation.views.adapters.BookmarkListAdapter
@@ -17,7 +15,6 @@ import com.maroqi.newsapplication.presentation.views.adapters.BookmarkListAdapte
 class BookmarkFragment : Fragment() {
     private var binding: FragmentBookmarkBinding? = null
 
-//    private val viewModel: MainViewModel by activityViewModels { NewsViewModelFactory }
     private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
