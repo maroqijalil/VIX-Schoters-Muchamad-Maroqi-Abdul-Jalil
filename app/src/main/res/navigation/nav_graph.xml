@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/news_list_fragment"
-        android:name="com.maroqi.newsapplication.presentation.views.screens.NewsListFragment"
+        android:name="com.maroqi.newsapplication.modules.news.presentation.screens.NewsListFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_news_list">
 
@@ -36,24 +36,24 @@
 
     <fragment
         android:id="@+id/news_detail_fragment"
-        android:name="com.maroqi.newsapplication.presentation.views.screens.NewsDetailFragment"
+        android:name="com.maroqi.newsapplication.modules.news.presentation.screens.NewsDetailFragment"
         tools:layout="@layout/fragment_news_detail">
 
         <argument
             android:name="news"
-            app:argType=".domain.models.NewsModel" />
+            app:argType=".modules.news.domain.models.NewsModel" />
     </fragment>
 
     <fragment
         android:id="@+id/profile_fragment"
-        android:name="com.maroqi.newsapplication.presentation.views.screens.ProfileFragment"
+        android:name="com.maroqi.newsapplication.modules.common.presention.screens.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/bookmark_fragment"
         android:label="Bookmark"
-        android:name="com.maroqi.newsapplication.presentation.views.screens.BookmarkFragment"
+        android:name="com.maroqi.newsapplication.modules.bookmark.presentation.screens.BookmarkFragment"
         tools:layout="@layout/fragment_bookmark" >
 
         <action

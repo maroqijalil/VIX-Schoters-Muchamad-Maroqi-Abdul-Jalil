@@ -8,7 +8,7 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:name=".application.NewsApplication"
+        android:name=".core.application.NewsApplication"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +17,7 @@
         android:theme="@style/Theme.NewsApplication"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.views.screens.MainActivity"
+            android:name=".modules.news.presentation.screens.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
