@@ -5,7 +5,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitNetwork(private val baseUrl: String = "https://newsapi.org/v2/") {
+class RetrofitNetwork {
+    val BASE_URL: String = "https://newsapi.org/v2/"
+
     val client: Retrofit
         get() {
             val interceptor = HttpLoggingInterceptor()
@@ -20,7 +22,7 @@ class RetrofitNetwork(private val baseUrl: String = "https://newsapi.org/v2/") {
                 .addInterceptor(interceptor)
                 .build()
             return Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient)
                 .build()

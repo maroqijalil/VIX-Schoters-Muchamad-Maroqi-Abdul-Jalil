@@ -17,7 +17,8 @@ import com.maroqi.newsapplication.presentation.views.adapters.BookmarkListAdapte
 class BookmarkFragment : Fragment() {
     private var binding: FragmentBookmarkBinding? = null
 
-    private val viewModel: MainViewModel by activityViewModels { NewsViewModelFactory }
+//    private val viewModel: MainViewModel by activityViewModels { NewsViewModelFactory }
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

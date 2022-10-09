@@ -9,8 +9,11 @@ import com.maroqi.newsapplication.domain.models.NewsModel
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.requests.Request
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.queries.EverythingQuery
 import com.maroqi.newsapplication.infrastructure.apiservices.retrofit.queries.TopHeadlinesQuery
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel(private val useCases: UseCases) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val useCases: UseCases) : ViewModel() {
     private val _news = MutableLiveData<List<NewsModel>>()
     val news: LiveData<List<NewsModel>> = _news
 

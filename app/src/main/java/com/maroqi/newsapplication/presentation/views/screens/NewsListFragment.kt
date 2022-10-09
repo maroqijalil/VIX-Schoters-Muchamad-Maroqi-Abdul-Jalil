@@ -20,7 +20,8 @@ import com.maroqi.newsapplication.presentation.views.adapters.NewsListAdapter
 class NewsListFragment : Fragment() {
     private var binding: FragmentNewsListBinding? = null
 
-    private val viewModel: MainViewModel by activityViewModels { NewsViewModelFactory }
+//    private val viewModel: MainViewModel by activityViewModels { NewsViewModelFactory }
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
