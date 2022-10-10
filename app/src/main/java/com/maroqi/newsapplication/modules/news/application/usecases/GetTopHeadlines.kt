@@ -6,9 +6,12 @@ import com.maroqi.newsapplication.core.network.Request
 import com.maroqi.newsapplication.modules.news.domain.apiservices.retrofit.NewsApiService
 import com.maroqi.newsapplication.modules.news.infrastructure.adapters.NewsAdapter
 import com.maroqi.newsapplication.modules.news.domain.dao.room.NewsDao
+import dagger.hilt.android.scopes.ViewModelScoped
 import java.lang.Exception
+import javax.inject.Inject
 
-class GetTopHeadlines(
+@ViewModelScoped
+class GetTopHeadlines @Inject constructor(
     private val apiService: NewsApiService,
     private val dao: NewsDao
 ) : UseCase<List<NewsModel>>() {

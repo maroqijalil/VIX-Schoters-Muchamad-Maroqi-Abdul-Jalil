@@ -5,9 +5,12 @@ import com.maroqi.newsapplication.modules.news.domain.models.NewsModel
 import com.maroqi.newsapplication.core.network.Request
 import com.maroqi.newsapplication.modules.news.infrastructure.adapters.NewsAdapter
 import com.maroqi.newsapplication.modules.news.domain.dao.room.NewsDao
+import dagger.hilt.android.scopes.ViewModelScoped
 import java.lang.Exception
+import javax.inject.Inject
 
-class GetBookmarks(private val dao: NewsDao) : UseCase<List<NewsModel>>() {
+@ViewModelScoped
+class GetBookmarks @Inject constructor(private val dao: NewsDao) : UseCase<List<NewsModel>>() {
     override suspend fun execute(request: Request<List<NewsModel>>) {
         try {
             request.onSuccess(dao.getAll().map { NewsAdapter.toModel(it) })
